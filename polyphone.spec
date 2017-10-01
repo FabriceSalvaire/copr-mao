@@ -20,6 +20,7 @@ BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	portaudio-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:  zlib-devel
 
 %description
 Polyphone is a free software for editing Soundfonts in SF2 format. These files
