@@ -7,7 +7,7 @@ License:	GPLv3+
 URL:		http://www.polyphone.fr/
 
 # Source0:	http://www.polyphone.fr/download/polyphone-%{version}-src.zip
-Source0:	polyphone-%{version}-src.tar.bz2
+Source0:	polyphone-%{version}-src.tar.xz
 
 BuildRequires:	qt5-qtbase-devel
 BuildRequires:	qt5-qtsvg-devel
