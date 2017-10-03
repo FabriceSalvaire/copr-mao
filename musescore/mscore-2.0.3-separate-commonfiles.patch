@@ -1,0 +1,141 @@
+diff -up MuseScore-2.0.1/libmscore/figuredbass.cpp MuseScore-2.0.1/libmscore/figuredbass.cpp.separatecommon
+--- MuseScore-2.0.1/libmscore/figuredbass.cpp	2015-06-14 16:46:08.775599172 -0600
++++ MuseScore-2.0.1/libmscore/figuredbass.cpp.separatecommon	2015-06-14 16:46:08.811599760 -0600
+@@ -1556,7 +1556,7 @@ bool FiguredBass::readConfigFile(const Q
+             path = rpath + QString("/fonts_figuredbass.xml");
+             }
+ #else
+-            path = ":/fonts/fonts_figuredbass.xml";
++            path = "/usr/share/fonts/mscore/fonts_figuredbass.xml";
+ #endif
+             g_FBFonts.clear();
+             }
+diff -up MuseScore-2.0.1/libmscore/mscore.cpp MuseScore-2.0.1/libmscore/mscore.cpp.separatecommon
+--- MuseScore-2.0.1/libmscore/mscore.cpp	2015-06-14 16:46:08.787599367 -0600
++++ MuseScore-2.0.1/libmscore/mscore.cpp.separatecommon	2015-06-14 16:46:08.811599760 -0600
+@@ -191,17 +191,17 @@ void MScore::init()
+       //
+ #if !defined(Q_OS_MAC) && !defined(Q_OS_IOS)
+       static const char* fonts[] = {
+-            ":/fonts/MuseJazz.ttf",
+-            ":/fonts/FreeSans.ttf",
+-            ":/fonts/FreeSerif.ttf",
+-            ":/fonts/FreeSerifBold.ttf",
+-            ":/fonts/FreeSerifItalic.ttf",
+-            ":/fonts/FreeSerifBoldItalic.ttf",
+-            ":/fonts/mscoreTab.ttf",
+-            ":/fonts/mscore-BC.ttf",
+-            ":/fonts/bravura/BravuraText.otf",
+-            ":/fonts/gootville/GootvilleText.otf",
+-            ":/fonts/mscore/MScoreText.ttf",
++            "/usr/share/fonts/mscore/MuseJazz.ttf",
++            "/usr/share/fonts/mscore/FreeSans.ttf",
++            "/usr/share/fonts/mscore/FreeSerif.ttf",
++            "/usr/share/fonts/mscore/FreeSerifBold.ttf",
++            "/usr/share/fonts/mscore/FreeSerifItalic.ttf",
++            "/usr/share/fonts/mscore/FreeSerifBoldItalic.ttf",
++            "/usr/share/fonts/mscore/mscoreTab.ttf",
++            "/usr/share/fonts/mscore/mscore-BC.ttf",
++            "/usr/share/fonts/mscore/bravura/BravuraText.otf",
++            "/usr/share/fonts/mscore/gootville/GootvilleText.otf",
++            "/usr/share/fonts/mscore/MScoreText.ttf",
+             };
+ 
+       for (unsigned i = 0; i < sizeof(fonts)/sizeof(*fonts); ++i) {
+diff -up MuseScore-2.0.1/libmscore/stafftype.cpp MuseScore-2.0.1/libmscore/stafftype.cpp.separatecommon
+--- MuseScore-2.0.1/libmscore/stafftype.cpp	2015-06-14 16:46:08.800599580 -0600
++++ MuseScore-2.0.1/libmscore/stafftype.cpp.separatecommon	2015-06-14 16:46:08.812599776 -0600
+@@ -872,7 +872,7 @@ bool StaffType::readConfigFile(const QSt
+             path = rpath + QString("/fonts_tablature.xml");
+             }
+ #else
+-            path = ":/fonts/fonts_tablature.xml";
++            path = "/usr/share/mscore/fonts/fonts_tablature.xml";
+ #endif
+             _durationFonts.clear();
+             _fretFonts.clear();
+--- MuseScore-2.0.2/mscore/preferences.cpp      2016-02-27 10:42:39.374123325 +0100
++++ MuseScore-2.0.2/mscore/preferences.cpp.separatecommon  2016-02-27 10:40:01.026906809 +0100
+@@ -155,7 +155,7 @@ void Preferences::init()
+       midiExportRPNs           = false;
+       MScore::playRepeats      = true;
+       MScore::panPlayback      = true;
+-      instrumentList1          = ":/data/instruments.xml";
++      instrumentList1          = INSTPREFIX "/share/" INSTALL_NAME "instruments/instruments.xml";
+       instrumentList2          = "";
+ 
+       musicxmlImportLayout     = true;
+
+--- MuseScore-2.0.3/mscore/musescore.qrc	2016-04-01 02:46:08.000000000 +0200
++++ MuseScore-2.0.3/mscore/musescore.qrc.mod	2016-04-24 12:06:09.857868424 +0200
+@@ -1,27 +1,8 @@
+ <RCC>
+     <qresource prefix="/">
+         <file>data/shortcuts.xml</file>
+-        <file>data/paper1.png</file>
+-        <file>data/paper2.png</file>
+-        <file>data/paper3.png</file>
+-        <file>data/paper4.png</file>
+-        <file>data/paper5.png</file>
+         <file>data/icons/edit.svg</file>
+-        <file alias="fonts/mscore/glyphnames.json">../fonts/mscore/glyphnames.json</file>
+-        <file alias="fonts/mscore/metadata.json">../fonts/mscore/metadata.json</file>
+-        <file alias="fonts/gootville/glyphnames.json">../fonts/gootville/glyphnames.json</file>
+-        <file alias="fonts/gootville/metadata.json">../fonts/gootville/metadata.json</file>
+-        <file alias="fonts/bravura/glyphnames.json">../fonts/bravura/glyphnames.json</file>
+-        <file alias="fonts/bravura/metadata.json">../fonts/bravura/metadata.json</file>
+-        <file alias="fonts/bravura/classes.json">../fonts/bravura/classes.json</file>
+-        <file alias="fonts/bravura/ranges.json">../fonts/bravura/ranges.json</file>
+-        <file alias="fonts/fonts_tablature.xml">../fonts/fonts_tablature.xml</file>
+-        <file alias="fonts/fonts_figuredbass.xml">../fonts/fonts_figuredbass.xml</file>
+-        <file alias="data/instruments.xml">../share/instruments/instruments.xml</file>
+         <file>data/splash.png</file>
+-        <file alias="data/My_First_Score.mscz">../share/templates/My_First_Score.mscz</file>
+-        <file alias="data/Create_New_Score.mscz">../share/templates/Create_New_Score.mscz</file>
+-        <file alias="data/Empty_Score.mscz">../share/templates/01-General/00-Blank.mscz</file>
+         <file>data/tab_sample.mscx</file>
+         <file>data/style.qss</file>
+         <file>data/mscore.png</file>
+--- MuseScore-2.0.3/mscore/preferences.cpp	2016-04-24 12:06:51.533602246 +0200
++++ MuseScore-2.0.3/mscore/preferences.cpp.mod	2016-04-24 12:25:58.304775613 +0200
+@@ -73,7 +73,7 @@ void Preferences::init()
+       bgUseColor         = true;
+       fgUseColor         = true;
+       bgWallpaper        = QString();
+-      fgWallpaper        = ":/data/paper5.png";
++      fgWallpaper        = INSTPREFIX "/share/" INSTALL_NAME "data/paper5.png";
+       fgColor.setNamedColor("#f9f9f9");
+       pianoHlColor.setNamedColor("#1259d0");
+       iconHeight         = 24;
+@@ -121,7 +121,7 @@ void Preferences::init()
+ 
+       antialiasedDrawing       = true;
+       sessionStart             = SessionStart::SCORE;
+-      startScore               = ":/data/My_First_Score.mscz";
++      startScore               = INSTPREFIX "/share/" INSTALL_NAME "demos/My_First_Score.mscz";
+       defaultStyleFile         = "";
+ 
+       useMidiRemote      = false;
+diff -Nurp MuseScore-2.0.3/libmscore/sym.cpp MuseScore-2.0.3.fonts/libmscore/sym.cpp
+--- MuseScore-2.0.3/libmscore/sym.cpp   2016-04-01 02:46:08.000000000 +0200
++++ MuseScore-2.0.3.fonts/libmscore/sym.cpp     2016-05-06 21:57:07.406841882 +0200
+@@ -34,9 +34,9 @@ namespace Ms {
+ static const int FALLBACK_FONT = 0;       // Bravura
+ 
+ QVector<ScoreFont> ScoreFont::_scoreFonts {
+-      ScoreFont("Bravura",    "Bravura",     ":/fonts/bravura/",  "Bravura.otf"  ),
+-      ScoreFont("Emmentaler", "MScore",      ":/fonts/mscore/",   "mscore.ttf"   ),
+-      ScoreFont("Gonville",   "Gootville",   ":/fonts/gootville/", "Gootville.otf" )
++      ScoreFont("Bravura",    "Bravura",     INSTPREFIX "/share/fonts/mscore/bravura/",  "Bravura.otf"  ),
++      ScoreFont("Emmentaler", "MScore",      INSTPREFIX "/share/fonts/mscore/",   "mscore.ttf"   ),
++      ScoreFont("Gonville",   "Gootville",   INSTPREFIX "/share/fonts/mscore/gootville/", "Gootville.otf" )
+       };
+ 
+ //---------------------------------------------------------
+@@ -5867,5 +5867,3 @@ ScoreFont::~ScoreFont()
+       delete cache;
+       }
+ }
+-
+-
+

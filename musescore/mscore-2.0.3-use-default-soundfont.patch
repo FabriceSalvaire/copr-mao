@@ -1,0 +1,24 @@
+diff -up MuseScore-2.0.1/share/sound/CMakeLists.txt MuseScore-2.0.1/share/sound/CMakeLists.txt.default-soundfont
+--- MuseScore-2.0.1/share/sound/CMakeLists.txt	2015-06-14 16:46:09.439610020 -0600
++++ MuseScore-2.0.1/share/sound/CMakeLists.txt.default-soundfont	2015-06-14 16:46:09.486610787 -0600
+@@ -21,6 +21,6 @@
+ install(FILES
+       FluidR3Mono_GM.sf3
+       FluidR3Mono_License.md
+-      DESTINATION ${Mscore_SHARE_NAME}${Mscore_INSTALL_NAME}sound
++      DESTINATION ${Mscore_SHARE_NAME}/soundfonts
+       )
+ 
+       MScore::setNudgeStep(.1);         // cursor key (default 0.1)
+       MScore::setNudgeStep10(1.0);      // Ctrl + cursor key (default 1.0)
+--- MuseScore-2.0.3/mscore/preferences.cpp	2016-04-01 02:46:08.000000000 +0200
++++ MuseScore-2.0.3/mscore/preferences.cpp.mod	2016-04-24 11:39:39.870419741 +0200
+@@ -177,7 +177,7 @@ void Preferences::init()
+       myImagesPath    = QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("images_directory",     "Images"))).absoluteFilePath();
+       myTemplatesPath = QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("templates_directory",  "Templates"))).absoluteFilePath();
+       myPluginsPath   = QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("plugins_directory",    "Plugins"))).absoluteFilePath();
+-      mySoundfontsPath = QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("soundfonts_directory", "Soundfonts"))).absoluteFilePath();
++      mySoundfontsPath = QFileInfo(QString("/usr/share/soundfonts")).absoluteFilePath();
+ 
+       MScore::setNudgeStep(.1);         // cursor key (default 0.1)
+       MScore::setNudgeStep10(1.0);      // Ctrl + cursor key (default 1.0)

@@ -1,0 +1,12 @@
+diff -up MuseScore-2.0.1/build/CreatePrecompiledHeader.cmake MuseScore-2.0.1/build/CreatePrecompiledHeader.cmake.fixflags
+--- MuseScore-2.0.1/build/CreatePrecompiledHeader.cmake	2015-06-14 16:46:08.587596100 -0600
++++ MuseScore-2.0.1/build/CreatePrecompiledHeader.cmake.fixflags	2015-06-14 16:46:08.598596280 -0600
+@@ -26,6 +26,8 @@ macro( precompiled_header includes heade
+ 
+         list( APPEND compile_flags ${all_define_flags} )
+ 
++        list( APPEND compile_flags ${CMAKE_CXX_FLAGS} )
++
+         # Prepare the compile flags var for passing to GCC
+         separate_arguments( compile_flags )
+ 

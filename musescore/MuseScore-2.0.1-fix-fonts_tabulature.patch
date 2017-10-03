@@ -1,0 +1,11 @@
+--- MuseScore-2.0.1/libmscore/stafftype.cpp	2015-09-28 01:02:08.677169804 +0200
++++ MuseScore-2.0.1/libmscore/stafftype.cpp	2015-09-28 01:03:11.735725810 +0200
+@@ -872,7 +872,7 @@ 
+             path = rpath + QString("/fonts_tablature.xml");
+             }
+ #else
+-            path = "/usr/share/mscore/fonts/fonts_tablature.xml";
++            path = "/usr/share/fonts/mscore/fonts_tablature.xml";
+ #endif
+             _durationFonts.clear();
+             _fretFonts.clear();
