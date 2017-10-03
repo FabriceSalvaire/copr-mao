@@ -1,10 +1,10 @@
 %global fontfamilyname %{name}
-%global shortver 2.0
+%global shortver 2.1
 
 Name:          mscore
 Summary:       Music Composition & Notation Software
-Version:       %{shortver}.3
-Release:       3%{?dist}
+Version:       %{shortver}.0
+Release:       1%{?dist}
 # rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -13,7 +13,9 @@ Release:       3%{?dist}
 License:       GPLv2 and LGPLv2+ and LGPLv3 and CC-BY and MIT and OFL
 Group:         Applications/Multimedia
 URL:           http://musescore.org/en
-Source0:       http://ftp.osuosl.org/pub/musescore/releases/MuseScore-2.0.3/MuseScore-2.0.3.zip
+# Source0:       http://ftp.osuosl.org/pub/musescore/releases/MuseScore-2.0.3/MuseScore-2.0.3.zip
+Source0:       MuseScore-%{shortver}.tar.xz
+
 
 # For mime types
 Source1:       %{name}.xml
@@ -56,6 +58,7 @@ BuildRequires: qt5-qtwebkit-devel
 BuildRequires: qtsingleapplication-devel
 BuildRequires: perl(Pod::Usage)
 BuildRequires: doxygen
+BuildRequires: lame-devel
 
 Requires:      %{name}-fonts = %{version}-%{release}
 Requires:      soundfont2-default
@@ -114,12 +117,11 @@ MuseScore is a free cross platform WYSIWYG music notation program.
 This package contains the musical notation fonts for use of MuseScore.
 
 %prep
-%setup -q -n MuseScore-%{version}
-
+%setup -q -n MuseScore-%{shortver}
 
 %patch0 -p1 -b .default.soundfont
 %patch1 -p1 -b .separatecommon
-%patch2 -p1 -b .dso
+#!# %patch2 -p1 -b .dso
 %patch3 -p1 -b .fixdesktop
 %patch4 -p1 -b .fixflags
 %patch7 -p1
@@ -145,14 +147,23 @@ sed -i '/rpath/d' CMakeLists.txt
 # Build the actual program
 mkdir -p build
 pushd build
-   %cmake -DCMAKE_BUILD_TYPE=RELEASE         \
-          -DCMAKE_CXX_FLAGS="%{optflags} -fsigned-char"    \
+   %cmake -DCMAKE_BUILD_TYPE=RELEASE \
+          -DCMAKE_CXX_FLAGS="%{optflags} -fsigned-char" \
           -DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -std=c++11 -fPIC -O2 -DDEBUG -fsigned-char" \
-          -DBUILD_LAME=OFF ..
+          ..
+	  # -DUSE_SYSTEM_QTSINGLEAPPLICATION="${USE_SYSTEM_QTSINGLEAPPLICATION}" \
+	  # -DUSE_SYSTEM_FREETYPE="${USE_SYSTEM_FREETYPE}" \
+	  # -DBUILD_LAME="${BUILD_LAME}" \
+	  # -DBUILD_PULSEAUDIO="${BUILD_PULSEAUDIO}" \
+	  # -DBUILD_JACK="${BUILD_JACK}" \
+	  # -DBUILD_PORTAUDIO="${BUILD_PORTAUDIO}" \
+	  # -DBUILD_WEBKIT="${BUILD_WEBKIT}" \
+	  # -DCMAKE_SKIP_RPATH="${NO_RPATH}" \
    #make PREFIX=/usr lupdate %{?_smp_mflags}
    make PREFIX=/usr lrelease %{?_smp_mflags}
    make PREFIX=/usr manpages %{?_smp_mflags}
-   make PREFIX=/usr %{?_smp_mflags} VERBOSE=1
+   cp ../all.h .
+   make PREFIX=/usr VERBOSE=1 %{?_smp_mflags}
    pushd rdoc
       make PREFIX=/usr
    popd
@@ -299,6 +310,9 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %{_datadir}/appdata/%{fontfamilyname}.metainfo.xml
 
 %changelog
+* Tue Oct  3 2017 Fabrice Salvaire <fabricesalvaire@fedoraproject.org> 2.1.0-1
+- Update to 2.1.0
+
 * Mon May 09 2016 Brendan Jones <brendan.jones.it@gmail.com> 2.0.3-3
 - Font locations
 

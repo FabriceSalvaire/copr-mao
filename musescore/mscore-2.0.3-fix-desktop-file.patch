@@ -2,7 +2,7 @@
 +++ MuseScore-2.0.3/build/Linux+BSD/mscore.desktop.in.old	2016-04-24 16:53:12.699941549 +0200
 @@ -1,5 +1,4 @@
  [Desktop Entry]
--Version=1.1@This_is_version_of_Desktop_Entry_Specification@@It_is_NOT_MuseScore_version@
+-Version=1.0@This_is_version_of_Desktop_Entry_Specification@@It_is_NOT_MuseScore_version@
  Name=@MUSESCORE_NAME_VERSION@@Variables_substituted_by_CMAKE_on_installation@
  GenericName=Music notation
  GenericName[de]=Notensatz
