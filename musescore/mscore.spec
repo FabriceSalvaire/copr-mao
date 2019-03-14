@@ -1,10 +1,10 @@
 %global fontfamilyname %{name}
-%global shortver 2.1
+%global shortver 2.2
 
 Name:          mscore
 Summary:       Music Composition & Notation Software
-Version:       %{shortver}.0
-Release:       1%{?dist}
+Version:       %{shortver}.1
+Release:       6%{?dist}
 # rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -13,58 +13,58 @@ Release:       1%{?dist}
 License:       GPLv2 and LGPLv2+ and LGPLv3 and CC-BY and MIT and OFL
 Group:         Applications/Multimedia
 URL:           http://musescore.org/en
-# Source0:       http://ftp.osuosl.org/pub/musescore/releases/MuseScore-2.0.3/MuseScore-2.0.3.zip
-Source0:       MuseScore-%{shortver}.tar.xz
-
+Source0:       http://ftp.osuosl.org/pub/musescore/releases/MuseScore-2.2.1/MuseScore-2.2.1.zip
 
 # For mime types
 Source1:       %{name}.xml
 # Add metainfo file for font to show in gnome-software
 Source2:       %{fontfamilyname}.metainfo.xml
-# Use Fedora's default soundfont instead of the removed one:
-Patch0:        mscore-2.0.3-use-default-soundfont.patch
+# Use Fedora's default soundfont directory instead of the custom location
+Patch0:        mscore-2.2.1-use-default-soundfont.patch
 # We don't build the common files (font files, wallpapers, demo song, instrument
 # list) into the binary executable to reduce its size. This is also useful to
 # inform the users about the existence of different choices for common files.
 # The font files need to be separated due to the font packaging guidelines.
 Patch1:        mscore-2.0.3-separate-commonfiles.patch
-# Fix DSO linking. Seems to have fixed in trunk, but misssing in the tarball
-# http://musescore.org/en/node/5817
-Patch2:        mscore-2.0.3-dso-linking.patch
 # remove Version from desktop.in
-Patch3:        mscore-2.0.3-fix-desktop-file.patch
+Patch2:        mscore-2.0.3-fix-desktop-file.patch
 # Use CXXFLAGS for precompiled header
-Patch4:        musescore-2.0.1-fix-flags-for-precompiled-header.patch
+Patch3:        musescore-2.0.1-fix-flags-for-precompiled-header.patch
 # correct fonts-tabulature.xml location
-Patch7:        MuseScore-2.0.1-fix-fonts_tabulature.patch
+Patch4:        MuseScore-2.0.1-fix-fonts_tabulature.patch
+# missing includes RHBZ#1584834
+# https://github.com/musescore/MuseScore/pull/3697
+Patch5:        mscore-missing-includes.patch
 
 BuildRequires: alsa-lib-devel
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
 BuildRequires: jack-audio-connection-kit-devel
 BuildRequires: pulseaudio-libs-devel
 BuildRequires: libsndfile-devel
 BuildRequires: portaudio-devel
+BuildRequires: portmidi-devel
 BuildRequires: libvorbis-devel
 BuildRequires: qt5-qtbase-devel
+# uses private api (somewhere)
+BuildRequires: qt5-qtbase-private-devel
+%{?_qt5:Requires: %{_qt5}%{?_isa} = %{_qt5_version}}
 BuildRequires: qt5-qtdeclarative-devel
 BuildRequires: qt5-qtscript-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: qt5-qttools-static
-#! BuildRequires: qt5-qtquick1-devel
-# f26+ No matching package to install: 'qt5-qtquick1-devel'
 BuildRequires: qt5-qtsvg-devel
 BuildRequires: qt5-qtxmlpatterns-devel
 BuildRequires: qt5-qtwebkit-devel
-BuildRequires: qtsingleapplication-devel
+BuildRequires: qtsingleapplication-qt5-devel
+BuildRequires: pkgconfig(freetype2) >= 2.5.2
 BuildRequires: perl(Pod::Usage)
 BuildRequires: doxygen
-BuildRequires: lame-devel
 
 Requires:      %{name}-fonts = %{version}-%{release}
 Requires:      soundfont2-default
 # For scripting
-Requires:      qtscriptbindings
 Requires:      qt5-qtquickcontrols
 
 
@@ -111,6 +111,7 @@ BuildRequires: texlive
 BuildRequires: tex-cm-lgc
 BuildRequires: texlive-metapost-bin
 BuildRequires: texlive-mf2pt1-bin
+BuildRequires: lame-devel
 
 %description fonts
 MuseScore is a free cross platform WYSIWYG music notation program.
@@ -118,17 +119,33 @@ MuseScore is a free cross platform WYSIWYG music notation program.
 This package contains the musical notation fonts for use of MuseScore.
 
 %prep
-%setup -q -n MuseScore-%{shortver}
+%setup -q -c MuseScore-%{shortver}
+
 
 %patch0 -p1 -b .default.soundfont
 %patch1 -p1 -b .separatecommon
-#!# %patch2 -p1 -b .dso
-%patch3 -p1 -b .fixdesktop
-%patch4 -p1 -b .fixflags
-%patch7 -p1
+%patch2 -p1 -b .fixdesktop
+%patch3 -p1 -b .fixflags
+%patch4 -p1
+%patch5 -p1 -b .missing_includes
+
+# porttime is part of portmidi in our distribution
+sed -i 's|-lporttime||' mscore/CMakeLists.txt
 
 # Remove the precompiled binary
 rm thirdparty/rtf2html/rtf2html
+
+# Remove bundled stuff
+sed -i \
+  -e "s|QtSolutions_SingleApplication-2.6|Qt5Solutions_SingleApplication-2.6|" \
+  -e "/QTSINGLEAPPLICATION_INCLUDE_DIRS/s|)| PATHS %{_includedir}/qt5)|" \
+  CMakeLists.txt
+sed -i -e 's|#include "singleapp/src/QtSingleApplication"|#include <QtSingleApplication>|' mscore/musescore.h
+rm -vrf thirdparty/singleapp
+rm -vrf thirdparty/freetype
+
+rm demos/All_Dudes.mscz demos/Triumph.mscz
+sed -i -e 's|All_Dudes.mscz||g' -e 's|Triumph.mscz||g' demos/CMakeLists.txt
 
 # Force Fedora specific flags:
 find . -name CMakeLists.txt -exec sed -i -e 's|-m32|%{optflags}|' -e 's|-O3|%{optflags}|' {} \;
@@ -148,23 +165,18 @@ sed -i '/rpath/d' CMakeLists.txt
 # Build the actual program
 mkdir -p build
 pushd build
-   %cmake -DCMAKE_BUILD_TYPE=RELEASE \
-          -DCMAKE_CXX_FLAGS="%{optflags} -fsigned-char" \
+   %cmake -DCMAKE_BUILD_TYPE=RELEASE         \
+          -DCMAKE_CXX_FLAGS="%{optflags} -fsigned-char"    \
           -DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -std=c++11 -fPIC -O2 -DDEBUG -fsigned-char" \
-          ..
-	  # -DUSE_SYSTEM_QTSINGLEAPPLICATION="${USE_SYSTEM_QTSINGLEAPPLICATION}" \
-	  # -DUSE_SYSTEM_FREETYPE="${USE_SYSTEM_FREETYPE}" \
-	  # -DBUILD_LAME="${BUILD_LAME}" \
-	  # -DBUILD_PULSEAUDIO="${BUILD_PULSEAUDIO}" \
-	  # -DBUILD_JACK="${BUILD_JACK}" \
-	  # -DBUILD_PORTAUDIO="${BUILD_PORTAUDIO}" \
-	  # -DBUILD_WEBKIT="${BUILD_WEBKIT}" \
-	  # -DCMAKE_SKIP_RPATH="${NO_RPATH}" \
-   #make PREFIX=/usr lupdate %{?_smp_mflags}
+          -DBUILD_LAME=ON \
+          -DUSE_SYSTEM_QTSINGLEAPPLICATION=1 \
+          -DUSE_SYSTEM_FREETYPE=1 ..
    make PREFIX=/usr lrelease %{?_smp_mflags}
+%if 0%{?fedora} <= 26
+   cp ../all.h . # cmake dependency issue in fc26 use source PCH
+%endif
    make PREFIX=/usr manpages %{?_smp_mflags}
-   cp ../all.h .
-   make PREFIX=/usr VERBOSE=1 %{?_smp_mflags}
+   make PREFIX=/usr %{?_smp_mflags} VERBOSE=1
    pushd rdoc
       make PREFIX=/usr
    popd
@@ -195,11 +207,11 @@ install -pm 644 fonts/mscore/*.json %{buildroot}/%{_fontdir}
 install -pm 644 fonts/*.xml %{buildroot}/%{_fontdir}
 
 # mscz
-install -p share/templates/*.mscz %{buildroot}/%{_datadir}/%{name}-%{shortver}/demos/
+install -pm 0644 share/templates/*.mscz %{buildroot}/%{_datadir}/%{name}-%{shortver}/demos/
 # symlinks to be safe
 pushd %{buildroot}/%{_datadir}/%{name}-%{shortver}/demos/
-for i in *.mcsz; do
-  ln -s $i ../templates/$i
+for i in *.mscz; do
+  ln -s %{_datadir}/%{name}-%{shortver}/demos/$i ../templates/$i
 done
 popd
 
@@ -251,7 +263,7 @@ mv thirdparty/rtf2html/README           README.rtf2html
 mv thirdparty/rtf2html/README.mscore    README.mscore.rtf2html
 mv thirdparty/rtf2html/README.ru        README.ru.rtf2html
 mv share/wallpaper/COPYRIGHT            COPYING.wallpaper
-mv %{buildroot}%{_datadir}/soundfonts/FluidR3Mono_License.md COPYING.FluidR3Mono
+mv %{buildroot}%{_datadir}/soundfonts/MuseScore_General-License.md COPYING.MuseScore_General
 mv fonts/bravura/OFL.txt                COPYING.OFL
 
 # Add AppStream metadata
@@ -262,28 +274,9 @@ install -Dm 0644 -p %{SOURCE2} \
 # iotest seems outdated. Skipping.
 # rendertest needs the X server. Skipping.
 
-%post
-touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-touch --no-create %{_datadir}/mime/packages &> /dev/null || :
-update-desktop-database &> /dev/null || :
-
-%postun
-if [ $1 -eq 0 ] ; then
-    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-    touch --no-create %{_datadir}/mime/packages &> /dev/null || :
-    update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-fi
-update-desktop-database &> /dev/null || :
-
-%posttrans
-gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
-
-
 %files
 %doc README*
-%license LICENSE.GPL
+%license LICENSE.GPL COPYING*
 %{_bindir}/mscore
 %{_bindir}/musescore
 %{_datadir}/%{name}-%{shortver}/
@@ -293,7 +286,7 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %exclude %{_datadir}/mime/packages/musescore.xml
 %{_datadir}/mime/packages/mscore.xml
 %{_mandir}/man1/*
-%{_datadir}/soundfonts/FluidR3Mono_GM.sf3
+%{_datadir}/soundfonts/MuseScore_General.sf3
 
 %files doc
 %doc %{_datadir}/%{name}-%{shortver}/manual/
@@ -311,8 +304,82 @@ update-mime-database %{?fedora:-n} %{_datadir}/mime &> /dev/null || :
 %{_datadir}/appdata/%{fontfamilyname}.metainfo.xml
 
 %changelog
-* Tue Oct  3 2017 Fabrice Salvaire <fabricesalvaire@fedoraproject.org> 2.1.0-1
-- Update to 2.1.0
+* Fri Sep 21 2018 Jan Grulich <jgrulich@redhat.com> - 2.2.1-6
+- rebuild (qt5)
+
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.2.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
+* Thu Jun 21 2018 Rex Dieter <rdieter@fedoraproject.org> - 2.2.1-4
+- rebuild (qt5)
+
+* Thu May 31 2018 Orcan Ogetbil <oget[DOT]fedora[AT]gmail[DOT]com> - 2.2.1-3
+- Fix missing include for qt >= 5.11 (RHBZ#1584834)
+
+* Sun May 27 2018 Rex Dieter <rdieter@fedoraproject.org> - 2.2.1-2
+- rebuild (qt5)
+
+* Wed Apr 04 2018 Orcan Ogetbil <oget[DOT]fedora[AT]gmail[DOT]com> - 2.2.1-1
+- Update to 2.2.1
+
+* Wed Feb 14 2018 Jan Grulich <jgrulich@redhat.com> - 2.1.0-12
+- rebuild (qt5)
+
+* Thu Feb 08 2018 Fedora Release Engineering <releng@fedoraproject.org> - 2.1.0-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
+* Fri Jan 05 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.1.0-10
+- Remove (hopefully) last dependency on qt4
+
+* Fri Jan 05 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.1.0-9
+- Remove obsolete scriptlets
+
+* Mon Jan 01 2018 Rex Dieter <rdieter@fedoraproject.org> - 2.1.0-8
+- rebuild (qt5)
+
+* Mon Dec 25 2017 Brendan Jones <brendan.jones.it@gmail.com> - 2.1.0-7
+- Link against full template path
+
+* Mon Dec 25 2017 Brendan Jones <brendan.jones.it@gmail.com> - 2.1.0-6
+- Correct mscz link
+
+* Mon Nov 27 2017 Rex Dieter <rdieter@fedoraproject.org> - 2.1.0-5
+- rebuild (qt5)
+
+* Mon Nov 20 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 2.1.0-4
+- Use proper qtsingleapplication (qt5)
+
+* Sun Oct 29 2017 Brendan Jones <brendan.jones.it@gmail.com> - 2.1.0-3
+- Use system libs
+
+* Sat Oct 21 2017 Brendan Jones <brendan.jones.it@gmail.com> - 2.1.0-2
+- Remove non-free scores
+- Fix pch project depends
+- Reorder patches
+
+* Tue Oct 17 2017 Brendan Jones <brendan.jones.it@gmail.com> - 2.1.0-1
+- Update to 2.1
+
+* Wed Oct 11 2017 Rex Dieter <rdieter@fedoraproject.org> - 2.0.3-10
+- BR: qt5-qtbase-private-devel
+
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.3-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
+* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.3-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
+* Sun Jun 18 2017 Orcan Ogetbil <oget[DOT]fedora[AT]gmail[DOT]com> - 2.0.3-7
+- Removed BR: qt5-qtquick1-devel as it is no longer in Fedora
+
+* Mon May 15 2017 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.3-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_27_Mass_Rebuild
+
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.3-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
+* Sat Nov 19 2016 Peter Robinson <pbrobinson@fedoraproject.org> 2.0.3-4
+- Rebuild (Power64)
 
 * Mon May 09 2016 Brendan Jones <brendan.jones.it@gmail.com> 2.0.3-3
 - Font locations
