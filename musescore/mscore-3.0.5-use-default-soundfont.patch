@@ -1,0 +1,31 @@
+--- mscore-3.0.5/mscore/preferences.cpp	2019-03-12 12:21:34.000000000 +0100
++++ mscore-3.0.5/mscore/preferences.cpp.default.soundfont	2019-03-14 22:36:37.297646995 +0100
+@@ -79,7 +79,7 @@ void Preferences::init(bool storeInMemor
+             {PREF_APP_PATHS_MYIMAGES,                              new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("images_directory", "Images"))).absoluteFilePath(), false)},
+             {PREF_APP_PATHS_MYPLUGINS,                             new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("plugins_directory", "Plugins"))).absoluteFilePath(), false)},
+             {PREF_APP_PATHS_MYSCORES,                              new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("scores_directory", "Scores"))).absoluteFilePath(), false)},
+-            {PREF_APP_PATHS_MYSOUNDFONTS,                          new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("soundfonts_directory", "SoundFonts"))).absoluteFilePath(), false)},
++            {PREF_APP_PATHS_MYSOUNDFONTS,                          new StringPreference(QFileInfo(QString("/usr/share/soundfonts")).absoluteFilePath())},
+             {PREF_APP_PATHS_MYSHORTCUTS,                           new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("shortcuts_directory", "Shortcuts"))).absoluteFilePath(), false)},
+             {PREF_APP_PATHS_MYSTYLES,                              new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("styles_directory", "Styles"))).absoluteFilePath(), false)},
+             {PREF_APP_PATHS_MYTEMPLATES,                           new StringPreference(QFileInfo(QString("%1/%2").arg(wd).arg(QCoreApplication::translate("templates_directory", "Templates"))).absoluteFilePath(), false)},
+--- mscore-3.0.5/share/sound/CMakeLists.txt	2019-03-12 12:21:34.000000000 +0100
++++ mscore-3.0.5/share/sound/CMakeLists.txt.default.soundfont	2019-03-14 22:36:37.297646995 +0100
+@@ -25,7 +25,7 @@ if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DI
+ else ()
+   install(FILES
+       MuseScore_General.sf3
+-      DESTINATION ${Mscore_SHARE_NAME}${Mscore_INSTALL_NAME}sound
++      DESTINATION ${Mscore_SHARE_NAME}/soundfonts
+       )
+ endif ()
+ 
+@@ -36,7 +36,7 @@ if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DI
+ else ()
+   install(FILES
+       MuseScore_General-License.md
+-      DESTINATION ${Mscore_SHARE_NAME}${Mscore_INSTALL_NAME}sound
++      DESTINATION ${Mscore_SHARE_NAME}/soundfonts
+       )
+ endif ()
+ 

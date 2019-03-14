@@ -1,10 +1,10 @@
 %global fontfamilyname %{name}
-%global shortver 2.2
+%global shortver 3.0
 
 Name:          mscore
 Summary:       Music Composition & Notation Software
-Version:       %{shortver}.1
-Release:       6%{?dist}
+Version:       %{shortver}.5
+Release:       1%{?dist}
 # rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
 # the rest is GPLv2
@@ -13,28 +13,25 @@ Release:       6%{?dist}
 License:       GPLv2 and LGPLv2+ and LGPLv3 and CC-BY and MIT and OFL
 Group:         Applications/Multimedia
 URL:           http://musescore.org/en
-Source0:       http://ftp.osuosl.org/pub/musescore/releases/MuseScore-2.2.1/MuseScore-2.2.1.zip
+Source0:       https://github.com/musescore/MuseScore/releases/download/v3.0.5/MuseScore-3.0.5.zip
 
 # For mime types
 Source1:       %{name}.xml
 # Add metainfo file for font to show in gnome-software
 Source2:       %{fontfamilyname}.metainfo.xml
 # Use Fedora's default soundfont directory instead of the custom location
-Patch0:        mscore-2.2.1-use-default-soundfont.patch
+Patch0:        mscore-3.0.5-use-default-soundfont.patch
 # We don't build the common files (font files, wallpapers, demo song, instrument
 # list) into the binary executable to reduce its size. This is also useful to
 # inform the users about the existence of different choices for common files.
 # The font files need to be separated due to the font packaging guidelines.
-Patch1:        mscore-2.0.3-separate-commonfiles.patch
+Patch1:        mscore-3.0.5-separate-commonfiles.patch
 # remove Version from desktop.in
 Patch2:        mscore-2.0.3-fix-desktop-file.patch
 # Use CXXFLAGS for precompiled header
 Patch3:        musescore-2.0.1-fix-flags-for-precompiled-header.patch
 # correct fonts-tabulature.xml location
 Patch4:        MuseScore-2.0.1-fix-fonts_tabulature.patch
-# missing includes RHBZ#1584834
-# https://github.com/musescore/MuseScore/pull/3697
-Patch5:        mscore-missing-includes.patch
 
 BuildRequires: alsa-lib-devel
 BuildRequires: cmake
@@ -127,7 +124,6 @@ This package contains the musical notation fonts for use of MuseScore.
 %patch2 -p1 -b .fixdesktop
 %patch3 -p1 -b .fixflags
 %patch4 -p1
-%patch5 -p1 -b .missing_includes
 
 # porttime is part of portmidi in our distribution
 sed -i 's|-lporttime||' mscore/CMakeLists.txt
@@ -304,6 +300,9 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_datadir}/appdata/%{fontfamilyname}.metainfo.xml
 
 %changelog
+* Thu Mar 14 2019 Fabrice Salvaire <fabrice.salvaire@orange.fr> - 3.0.5-1
+- MuseScore 3
+
 * Fri Sep 21 2018 Jan Grulich <jgrulich@redhat.com> - 2.2.1-6
 - rebuild (qt5)
 

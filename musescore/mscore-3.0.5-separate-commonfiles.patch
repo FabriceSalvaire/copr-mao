@@ -1,0 +1,70 @@
+--- mscore-3.0.5/libmscore/figuredbass.cpp	2019-03-12 12:21:34.000000000 +0100
++++ mscore-3.0.5/libmscore/figuredbass.cpp.separatecommon	2019-03-14 22:36:37.299646995 +0100
+@@ -1587,7 +1587,7 @@ bool FiguredBass::readConfigFile(const Q
+             path = rpath + QString("/fonts_figuredbass.xml");
+             }
+ #else
+-            path = ":/fonts/fonts_figuredbass.xml";
++            path = "/usr/share/fonts/mscore/fonts_figuredbass.xml";
+ #endif
+             g_FBFonts.clear();
+             }
+--- mscore-3.0.5/libmscore/mscore.cpp	2019-03-12 12:21:34.000000000 +0100
++++ mscore-3.0.5/libmscore/mscore.cpp.separatecommon	2019-03-14 22:56:52.668752264 +0100
+@@ -331,17 +331,17 @@ void MScore::init()
+       //
+ #if !defined(Q_OS_MAC) && !defined(Q_OS_IOS)
+       static const char* fonts[] = {
+-            ":/fonts/musejazz/MuseJazzText.otf",
+-            ":/fonts/FreeSans.ttf",
+-            ":/fonts/FreeSerif.ttf",
+-            ":/fonts/FreeSerifBold.ttf",
+-            ":/fonts/FreeSerifItalic.ttf",
+-            ":/fonts/FreeSerifBoldItalic.ttf",
+-            ":/fonts/mscoreTab.ttf",
+-            ":/fonts/mscore-BC.ttf",
+-            ":/fonts/bravura/BravuraText.otf",
+-            ":/fonts/gootville/GootvilleText.otf",
+-            ":/fonts/mscore/MScoreText.ttf",
++            "/usr/share/fonts/mscore/musejazz/MuseJazzText.otf",
++            "/usr/share/fonts/mscore/FreeSans.ttf",
++            "/usr/share/fonts/mscore/FreeSerif.ttf",
++            "/usr/share/fonts/mscore/FreeSerifBold.ttf",
++            "/usr/share/fonts/mscore/FreeSerifItalic.ttf",
++            "/usr/share/fonts/mscore/FreeSerifBoldItalic.ttf",
++            "/usr/share/fonts/mscore/mscoreTab.ttf",
++            "/usr/share/fonts/mscore/mscore-BC.ttf",
++            "/usr/share/fonts/mscore/bravura/BravuraText.otf",
++            "/usr/share/fonts/mscore/gootville/GootvilleText.otf",
++            "/usr/share/fonts/mscore/MScoreText.ttf",
+             };
+ 
+       for (unsigned i = 0; i < sizeof(fonts)/sizeof(*fonts); ++i) {
+--- mscore-3.0.5/libmscore/stafftype.cpp	2019-03-12 12:21:34.000000000 +0100
++++ mscore-3.0.5/libmscore/stafftype.cpp.separatecommon	2019-03-14 22:36:37.299646995 +0100
+@@ -1188,7 +1188,7 @@ bool StaffType::readConfigFile(const QSt
+             path = rpath + QString("/fonts_tablature.xml");
+             }
+ #else
+-            path = ":/fonts/fonts_tablature.xml";
++            path = "/usr/share/mscore/fonts/fonts_tablature.xml";
+ #endif
+             _durationFonts.clear();
+             _fretFonts.clear();
+--- mscore-3.0.5/libmscore/sym.cpp	2019-03-14 22:36:37.301646995 +0100
++++ mscore-3.0.5/libmscore/sym.cpp.separatecommon	2019-03-14 23:50:39.530576011 +0100
+@@ -34,10 +34,10 @@ namespace Ms {
+ static const int FALLBACK_FONT = 0;       // Bravura
+ 
+ QVector<ScoreFont> ScoreFont::_scoreFonts {
+-      ScoreFont("Bravura",    "Bravura",     ":/fonts/bravura/",   "Bravura.otf"  ),
+-      ScoreFont("Emmentaler", "MScore",      ":/fonts/mscore/",    "mscore.ttf"   ),
+-      ScoreFont("Gonville",   "Gootville",   ":/fonts/gootville/", "Gootville.otf" ),
+-      ScoreFont("MuseJazz",   "MuseJazz",     ":/fonts/musejazz/", "MuseJazz.otf" ),
++      ScoreFont("Bravura",    "Bravura",     INSTPREFIX "/share/fonts/mscore/bravura/",   "Bravura.otf"   ),
++      ScoreFont("Emmentaler", "MScore",      INSTPREFIX "/share/fonts/mscore/mscore/",    "mscore.ttf"    ),
++      ScoreFont("Gonville",   "Gootville",   INSTPREFIX "/share/fonts/mscore/gootville/", "Gootville.otf" ),
++      ScoreFont("MuseJazz",   "MuseJazz",    INSTPREFIX "/share/fonts/mscore/musejazz/",  "MuseJazz.otf"  ),
+       };
+ 
+ std::array<uint, size_t(SymId::lastSym)+1> ScoreFont::_mainSymCodeTable { 0 };

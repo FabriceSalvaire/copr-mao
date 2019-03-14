@@ -1,0 +1,32 @@
+In file included from /home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/musescore.cpp:119:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:24:75: error: expected class-name before « { » token
+ class MyWebUrlRequestInterceptor : public QWebEngineUrlRequestInterceptor {
+                                                                           ^
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:31:29: error: « QWebEngineUrlRequestInfo » n'a pas été déclaré
+       void interceptRequest(QWebEngineUrlRequestInfo& info)
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h: Dans le constructeur « Ms::MyWebUrlRequestInterceptor::MyWebUrlRequestInterceptor(QObject*) »:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:29:15: error: la classe « Ms::MyWebUrlRequestInterceptor » n'a aucun champ nommé « QWebEngineUrlRequestInterceptor »
+             : QWebEngineUrlRequestInterceptor(p) {}
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h: Dans la fonction membre « void Ms::MyWebUrlRequestInterceptor::interceptRequest(int&) »:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:33:18: error: requête du membre « setHttpHeader » dans « info », lequel est de type non classe « int »
+             info.setHttpHeader("Accept-Language",
+                  ^~~~~~~~~~~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h: Au niveau global:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:42:47: error: expected class-name before « { » token
+ class MyWebEnginePage : public QWebEnginePage {
+                                               ^
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:49:53: error: « QWebEnginePage » n'a pas été déclaré
+       bool acceptNavigationRequest(const QUrl& url, QWebEnginePage::NavigationType type, bool isMainFrame);
+                                                     ^~~~~~~~~~~~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:49:84: error: expected « , » or « ... » before « type »
+       bool acceptNavigationRequest(const QUrl& url, QWebEnginePage::NavigationType type, bool isMainFrame);
+                                                                                    ^~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h: Dans le constructeur « Ms::MyWebEnginePage::MyWebEnginePage(QObject*) »:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:47:15: error: la classe « Ms::MyWebEnginePage » n'a aucun champ nommé « QWebEnginePage »
+             : QWebEnginePage(parent) {}
+               ^~~~~~~~~~~~~~
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h: Au niveau global:
+/home/fabrice/rpmbuild/BUILD/mscore-3.0.5/mscore/startcenter.h:56:41: error: expected class-name before « { » token
+ class MyWebView : public QWebEngineView {
