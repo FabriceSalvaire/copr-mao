@@ -167,7 +167,9 @@ pushd build
           -DCMAKE_CXX_FLAGS_RELEASE="%{optflags} -std=c++11 -fPIC -O2 -DDEBUG -fsigned-char" \
           -DBUILD_LAME=ON \
           -DUSE_SYSTEM_QTSINGLEAPPLICATION=1 \
-          -DUSE_SYSTEM_FREETYPE=1 ..
+          -DUSE_SYSTEM_FREETYPE=1 \
+          -DQT_QMAKE_EXECUTABLE=/usr/bin/qmake-qt5 \
+          ..
    make PREFIX=/usr lrelease %{?_smp_mflags}
 %if 0%{?fedora} <= 26
    cp ../all.h . # cmake dependency issue in fc26 use source PCH
