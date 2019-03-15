@@ -53,6 +53,7 @@ BuildRequires: qt5-qttools-devel
 BuildRequires: qt5-qttools-static
 BuildRequires: qt5-qtsvg-devel
 BuildRequires: qt5-qtxmlpatterns-devel
+BuildRequires: qt5-qtwebengine-devel
 BuildRequires: qt5-qtwebkit-devel
 BuildRequires: qtsingleapplication-qt5-devel
 BuildRequires: pkgconfig(freetype2) >= 2.5.2
