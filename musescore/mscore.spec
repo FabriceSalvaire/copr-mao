@@ -5,6 +5,10 @@
 
 ####################################################################################################
 
+# https://fedoraproject.org/wiki/Packaging:RPMMacros
+
+####################################################################################################
+
 %global font_family_name %{name}
 %global short_version 3.0
 
@@ -309,6 +313,7 @@ install -Dm 0644 -p %{SOURCE2} \
 %license LICENSE.GPL COPYING*
 %{_bindir}/mscore
 %{_bindir}/musescore
+%{_datadir}/appdata/mscore.appdata.xml
 %{_datadir}/%{name}-%{short_version}/
 %exclude %{_datadir}/%{name}-%{short_version}/manual/
 %{_datadir}/icons/hicolor/*/*/*
@@ -317,6 +322,10 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_datadir}/mime/packages/mscore.xml
 %{_mandir}/man1/*
 %{_datadir}/soundfonts/MuseScore_General.sf3
+
+%exclude %{_bindir}/QtWebEngineProcess
+%exclude %{_libdir}/qt5/resources/qtwebengine_*
+%exclude %{_libdir}/qt5/translations/qtwebengine_locales/*.pak
 
 ####################################################################################################
 
