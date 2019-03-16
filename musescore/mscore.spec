@@ -1,9 +1,18 @@
-%global fontfamilyname %{name}
-%global shortver 3.0
+# Build packages:
+#   mscore.x86_64 : Music Composition & Notation Software
+#   mscore-doc.noarch : MuseScore documentation
+#   mscore-fonts.noarch : MuseScore fonts
+
+####################################################################################################
+
+%global font_family_name %{name}
+%global short_version 3.0
+
+####################################################################################################
 
 Name:          mscore
 Summary:       Music Composition & Notation Software
-Version:       %{shortver}.5
+Version:       %{short_version}.5
 Release:       1%{?dist}
 # rtf2html is LGPLv2+
 # paper4.png paper5.png are LGPLv3
@@ -15,10 +24,12 @@ Group:         Applications/Multimedia
 URL:           http://musescore.org/en
 Source0:       https://github.com/musescore/MuseScore/releases/download/v3.0.5/MuseScore-3.0.5.zip
 
+####################################################################################################
+
 # For mime types
 Source1:       %{name}.xml
 # Add metainfo file for font to show in gnome-software
-Source2:       %{fontfamilyname}.metainfo.xml
+Source2:       %{font_family_name}.metainfo.xml
 # Use Fedora's default soundfont directory instead of the custom location
 Patch0:        mscore-3.0.5-use-default-soundfont.patch
 # We don't build the common files (font files, wallpapers, demo song, instrument
@@ -34,6 +45,8 @@ Patch3:        musescore-2.0.1-fix-flags-for-precompiled-header.patch
 Patch4:        MuseScore-2.0.1-fix-fonts_tabulature.patch
 # Ensure CMake will use qmake-qt5
 Patch5:        mscore-3.0.5-fix-qmake-path.patch
+
+####################################################################################################
 
 BuildRequires: alsa-lib-devel
 BuildRequires: cmake
@@ -67,12 +80,15 @@ Requires:      soundfont2-default
 # For scripting
 Requires:      qt5-qtquickcontrols
 
-
 # Doxygen documentation is huge and it is for musescore development only.
 # Hence we don't build it for now. Otherwise it needs:
 # BuildRequires: graphviz doxygen texlive-latex texlive-dvips
 
+####################################################################################################
+
 Provides:      musescore = %{version}-%{release}
+
+####################################################################################################
 
 %description
 MuseScore is a free cross platform WYSIWYG music notation program. Some
@@ -86,6 +102,8 @@ highlights:
     * Import and export of MusicXML and Standard MIDI Files (SMF)
     * Translated in 26 languages
 
+####################################################################################################
+
 %package doc
 Summary:       MuseScore documentation
 Group:         Documentation
@@ -97,6 +115,8 @@ BuildArch:     noarch
 MuseScore is a free cross platform WYSIWYG music notation program.
 
 This package contains the user manual of MuseScore in different languages.
+
+####################################################################################################
 
 %package fonts
 Summary:       MuseScore fonts
@@ -118,9 +138,10 @@ MuseScore is a free cross platform WYSIWYG music notation program.
 
 This package contains the musical notation fonts for use of MuseScore.
 
-%prep
-%setup -q -c MuseScore-%{shortver}
+####################################################################################################
 
+%prep
+%setup -q -c MuseScore-%{short_version}
 
 %patch0 -p1 -b .default.soundfont
 %patch1 -p1 -b .separatecommon
@@ -160,6 +181,8 @@ mv -f tmpfile thirdparty/rtf2html/README
 # Disable rpath
 sed -i '/rpath/d' CMakeLists.txt
 
+####################################################################################################
+
 %build
 # Build the actual program
 mkdir -p build
@@ -182,6 +205,8 @@ pushd build
       make PREFIX=/usr
    popd
 popd
+
+####################################################################################################
 
 %install
 pushd build
@@ -208,11 +233,11 @@ install -pm 644 fonts/mscore/*.json %{buildroot}/%{_fontdir}
 install -pm 644 fonts/*.xml %{buildroot}/%{_fontdir}
 
 # mscz
-install -pm 0644 share/templates/*.mscz %{buildroot}/%{_datadir}/%{name}-%{shortver}/demos/
+install -pm 0644 share/templates/*.mscz %{buildroot}/%{_datadir}/%{name}-%{short_version}/demos/
 # symlinks to be safe
-pushd %{buildroot}/%{_datadir}/%{name}-%{shortver}/demos/
+pushd %{buildroot}/%{_datadir}/%{name}-%{short_version}/demos/
 for i in *.mscz; do
-  ln -s %{_datadir}/%{name}-%{shortver}/demos/$i ../templates/$i
+  ln -s %{_datadir}/%{name}-%{short_version}/demos/$i ../templates/$i
 done
 popd
 
@@ -269,19 +294,23 @@ mv fonts/bravura/OFL.txt                COPYING.OFL
 
 # Add AppStream metadata
 install -Dm 0644 -p %{SOURCE2} \
-        %{buildroot}%{_datadir}/appdata/%{fontfamilyname}.metainfo.xml
+        %{buildroot}%{_datadir}/appdata/%{font_family_name}.metainfo.xml
+
+####################################################################################################
 
 %check
 # iotest seems outdated. Skipping.
 # rendertest needs the X server. Skipping.
+
+####################################################################################################
 
 %files
 %doc README*
 %license LICENSE.GPL COPYING*
 %{_bindir}/mscore
 %{_bindir}/musescore
-%{_datadir}/%{name}-%{shortver}/
-%exclude %{_datadir}/%{name}-%{shortver}/manual/
+%{_datadir}/%{name}-%{short_version}/
+%exclude %{_datadir}/%{name}-%{short_version}/manual/
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/applications/%{name}.desktop
 %exclude %{_datadir}/mime/packages/musescore.xml
@@ -289,17 +318,24 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_mandir}/man1/*
 %{_datadir}/soundfonts/MuseScore_General.sf3
 
-%files doc
-%doc %{_datadir}/%{name}-%{shortver}/manual/
+####################################################################################################
 
-%_font_pkg %{fontfamilyname}*.ttf
+%files doc
+%doc %{_datadir}/%{name}-%{short_version}/manual/
+
+####################################################################################################
+
+%_font_pkg %{font_family_name}*.ttf
+%{_datadir}/appdata/%{font_family_name}.metainfo.xml
+%{_datadir}/fonts/mscore/*.json
+%{_datadir}/fonts/mscore/*.otf
+%{_datadir}/fonts/mscore/*.ttf
+%{_datadir}/fonts/mscore/*.xml
+%{_datadir}/fonts/mscore/MScoreText.ttf
 %{_datadir}/fonts/mscore/bravura/
 %{_datadir}/fonts/mscore/gootville/
-%{_datadir}/fonts/mscore/MScoreText.ttf
-%{_datadir}/fonts/mscore/*.otf
-%{_datadir}/fonts/mscore/*.json
-%{_datadir}/fonts/mscore/*.xml
-%{_datadir}/appdata/%{fontfamilyname}.metainfo.xml
+
+####################################################################################################
 
 %changelog
 * Thu Mar 14 2019 Fabrice Salvaire <fabrice.salvaire@orange.fr> - 3.0.5-1
