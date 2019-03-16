@@ -324,8 +324,7 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_datadir}/soundfonts/MuseScore_General.sf3
 
 %exclude %{_bindir}/QtWebEngineProcess
-%exclude %{_libdir}/qt5/resources/qtwebengine_*
-%exclude %{_libdir}/qt5/translations/qtwebengine_locales/*.pak
+%exclude %{_libdir}/qt5/*
 
 ####################################################################################################
 
@@ -340,7 +339,6 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_datadir}/fonts/mscore/*.otf
 %{_datadir}/fonts/mscore/*.ttf
 %{_datadir}/fonts/mscore/*.xml
-%{_datadir}/fonts/mscore/MScoreText.ttf
 %{_datadir}/fonts/mscore/bravura/
 %{_datadir}/fonts/mscore/gootville/
 
