@@ -1,3 +1,6 @@
-https://bugzilla.redhat.com/show_bug.cgi?id=1662537
 https://github.com/FabriceSalvaire/copr-mao
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1662537
+
 https://musescore.org/en/node/281322
+https://musescore.org/en/comment/reply/node/286152/comment_forum#page-title
