@@ -1,0 +1,323 @@
+--- appimage-content-filtered.txt	2019-03-16 23:23:10.985596658 +0100
++++ rpm-content.txt	2019-03-16 23:23:09.523599064 +0100
+@@ -1,82 +1,73 @@
+-usr/.DirIcon
+-usr/AppRun
+-usr/bin
+-usr/bin/QtWebEngineProcess
+-usr/bin/ldd-recursive
+-usr/bin/mscore-portable
+-usr/bin/musescore-portable
+-usr/bin/portable-utils
+-usr/bin/qt.conf
+-usr/bin/rm-empty-dirs
+-usr/install_manifest.txt
+-usr/lib
+-usr/lib/libEGL.so.1
+-usr/lib/libicudata.so.56
+-usr/lib/libicui18n.so.56
+-usr/lib/libicuuc.so.56
+-usr/lib/libopenal.so.1
+-usr/lib/libpng12.so.0
+-usr/lib/libportaudio.so.2
+-usr/lib/libportmidi.so.0
+-usr/lib/libporttime.so.0
+-usr/lib/qt5
+-usr/mscore-portable.desktop
+-usr/mscore-portable.svg
+-usr/optional
+-usr/optional/libjack.so.0
+-usr/share
+-usr/share/appdata
+-usr/share/appdata/mscore-portable.appdata.xml
+-usr/share/applications
+-usr/share/applications/mscore-portable.desktop
+-usr/share/icons
+-usr/share/icons/hicolor
+-usr/share/icons/hicolor/128x128
+-usr/share/icons/hicolor/128x128/apps
+-usr/share/icons/hicolor/128x128/apps/mscore-portable.png
+-usr/share/icons/hicolor/16x16
+-usr/share/icons/hicolor/16x16/apps
+-usr/share/icons/hicolor/16x16/apps/mscore-portable.png
+-usr/share/icons/hicolor/24x24
+-usr/share/icons/hicolor/24x24/apps
+-usr/share/icons/hicolor/24x24/apps/mscore-portable.png
+-usr/share/icons/hicolor/32x32
+-usr/share/icons/hicolor/32x32/apps
+-usr/share/icons/hicolor/32x32/apps/mscore-portable.png
+-usr/share/icons/hicolor/48x48
+-usr/share/icons/hicolor/48x48/apps
+-usr/share/icons/hicolor/48x48/apps/mscore-portable.png
+-usr/share/icons/hicolor/48x48/mimetypes
+-usr/share/icons/hicolor/48x48/mimetypes/application-vnd.recordare.musicxml-portable+xml.png
+-usr/share/icons/hicolor/48x48/mimetypes/application-vnd.recordare.musicxml-portable.png
+-usr/share/icons/hicolor/48x48/mimetypes/application-x-musescore-portable+xml.png
+-usr/share/icons/hicolor/48x48/mimetypes/application-x-musescore-portable.png
+-usr/share/icons/hicolor/512x512
+-usr/share/icons/hicolor/512x512/apps
+-usr/share/icons/hicolor/512x512/apps/mscore-portable.png
+-usr/share/icons/hicolor/64x64
+-usr/share/icons/hicolor/64x64/apps
+-usr/share/icons/hicolor/64x64/apps/mscore-portable.png
+-usr/share/icons/hicolor/96x96
+-usr/share/icons/hicolor/96x96/apps
+-usr/share/icons/hicolor/96x96/apps/mscore-portable.png
+-usr/share/icons/hicolor/scalable
+-usr/share/icons/hicolor/scalable/apps
+-usr/share/icons/hicolor/scalable/apps/mscore-portable.svg
+-usr/share/icons/hicolor/scalable/mimetypes
+-usr/share/icons/hicolor/scalable/mimetypes/application-vnd.recordare.musicxml-portable+xml.svg
+-usr/share/icons/hicolor/scalable/mimetypes/application-vnd.recordare.musicxml-portable.svg
+-usr/share/icons/hicolor/scalable/mimetypes/application-x-musescore-portable+xml.svg
+-usr/share/icons/hicolor/scalable/mimetypes/application-x-musescore-portable.svg
+-usr/share/man
+-usr/share/man/man1
+-usr/share/man/man1/mscore-portable.1.gz
+-usr/share/man/man1/musescore-portable.1.gz
+-usr/share/mime
+-usr/share/mime/packages
+-usr/share/mime/packages/musescore-portable.xml
++usr/bin/mscore
++usr/bin/musescore
++usr/lib/.build-id
++usr/lib/.build-id/e6
++usr/lib/.build-id/e6/a55a56c2b045d89cd67f65d7ffb4a1c87cc89c
++usr/share/appdata/mscore.appdata.xml
++usr/share/appdata/mscore.metainfo.xml
++usr/share/applications/mscore.desktop
++usr/share/doc/mscore
++usr/share/doc/mscore/README.md
++usr/share/doc/mscore/README.mscore.rtf2html
++usr/share/doc/mscore/README.rtf2html
++usr/share/doc/mscore/README.ru.rtf2html
++usr/share/fonts/mscore
++usr/share/fonts/mscore/Bravura.otf
++usr/share/fonts/mscore/BravuraText.otf
++usr/share/fonts/mscore/FreeSans.ttf
++usr/share/fonts/mscore/FreeSerif.ttf
++usr/share/fonts/mscore/FreeSerifBold.ttf
++usr/share/fonts/mscore/FreeSerifBoldItalic.ttf
++usr/share/fonts/mscore/FreeSerifItalic.ttf
++usr/share/fonts/mscore/Gootville.otf
++usr/share/fonts/mscore/GootvilleText.otf
++usr/share/fonts/mscore/MScoreText.ttf
++usr/share/fonts/mscore/bravura
++usr/share/fonts/mscore/bravura/Bravura.otf
++usr/share/fonts/mscore/bravura/BravuraText.otf
++usr/share/fonts/mscore/bravura/metadata.json
++usr/share/fonts/mscore/fonts_figuredbass.xml
++usr/share/fonts/mscore/fonts_tablature.xml
++usr/share/fonts/mscore/gootville
++usr/share/fonts/mscore/gootville/Gootville.otf
++usr/share/fonts/mscore/gootville/GootvilleText.otf
++usr/share/fonts/mscore/gootville/metadata.json
++usr/share/fonts/mscore/metadata.json
++usr/share/fonts/mscore/mscore-BC.ttf
++usr/share/fonts/mscore/mscore.ttf
++usr/share/fonts/mscore/mscoreTab.ttf
++usr/share/icons/hicolor/128x128/apps/mscore.png
++usr/share/icons/hicolor/16x16/apps/mscore.png
++usr/share/icons/hicolor/24x24/apps/mscore.png
++usr/share/icons/hicolor/32x32/apps/mscore.png
++usr/share/icons/hicolor/32x32/apps/mscore.xpm
++usr/share/icons/hicolor/32x32/mimetypes/application-x-musescore.xpm
++usr/share/icons/hicolor/48x48/apps/mscore.png
++usr/share/icons/hicolor/48x48/mimetypes/application-vnd.recordare.musicxml+xml.png
++usr/share/icons/hicolor/48x48/mimetypes/application-vnd.recordare.musicxml.png
++usr/share/icons/hicolor/48x48/mimetypes/application-x-musescore+xml.png
++usr/share/icons/hicolor/48x48/mimetypes/application-x-musescore.png
++usr/share/icons/hicolor/512x512/apps/mscore.png
++usr/share/icons/hicolor/64x64/apps/mscore.png
++usr/share/icons/hicolor/64x64/mimetypes/application-x-musescore.png
++usr/share/icons/hicolor/96x96/apps/mscore.png
++usr/share/icons/hicolor/scalable/apps/mscore.svg
++usr/share/icons/hicolor/scalable/mimetypes/application-vnd.recordare.musicxml+xml.svg
++usr/share/icons/hicolor/scalable/mimetypes/application-vnd.recordare.musicxml.svg
++usr/share/icons/hicolor/scalable/mimetypes/application-x-musescore+xml.svg
++usr/share/icons/hicolor/scalable/mimetypes/application-x-musescore.svg
++usr/share/licenses/mscore
++usr/share/licenses/mscore/COPYING.LESSER.rtf2html
++usr/share/licenses/mscore/COPYING.MuseScore_General
++usr/share/licenses/mscore/COPYING.OFL
++usr/share/licenses/mscore/COPYING.wallpaper
++usr/share/licenses/mscore/LICENSE.GPL
++usr/share/man/man1/mscore.1.gz
++usr/share/man/man1/musescore.1.gz
++usr/share/mime/packages/mscore.xml
+ usr/share/mscore-3.0
+ usr/share/mscore-3.0/demos
++usr/share/mscore-3.0/demos/Create_New_Score.mscz
+ usr/share/mscore-3.0/demos/Fugue_1.mscx
+ usr/share/mscore-3.0/demos/Reunion.mscz
+ usr/share/mscore-3.0/demos/Unclaimed_Gift.mscx
+@@ -214,136 +205,19 @@
+ usr/share/mscore-3.0/locale/mscore_vi.qm
+ usr/share/mscore-3.0/locale/mscore_zh_CN.qm
+ usr/share/mscore-3.0/locale/mscore_zh_TW.qm
+-usr/share/mscore-3.0/locale/qt_ar.qm
+ usr/share/mscore-3.0/locale/qt_bg.qm
+-usr/share/mscore-3.0/locale/qt_ca.qm
+-usr/share/mscore-3.0/locale/qt_cs.qm
+-usr/share/mscore-3.0/locale/qt_da.qm
+-usr/share/mscore-3.0/locale/qt_de.qm
+ usr/share/mscore-3.0/locale/qt_el.qm
+-usr/share/mscore-3.0/locale/qt_en.qm
+-usr/share/mscore-3.0/locale/qt_es.qm
+ usr/share/mscore-3.0/locale/qt_eu.qm
+-usr/share/mscore-3.0/locale/qt_fa.qm
+-usr/share/mscore-3.0/locale/qt_fi.qm
+-usr/share/mscore-3.0/locale/qt_fr.qm
+ usr/share/mscore-3.0/locale/qt_gd.qm
+-usr/share/mscore-3.0/locale/qt_gl.qm
+-usr/share/mscore-3.0/locale/qt_he.qm
+-usr/share/mscore-3.0/locale/qt_hu.qm
+ usr/share/mscore-3.0/locale/qt_id.qm
+-usr/share/mscore-3.0/locale/qt_it.qm
+-usr/share/mscore-3.0/locale/qt_ja.qm
+-usr/share/mscore-3.0/locale/qt_ko.qm
+-usr/share/mscore-3.0/locale/qt_lt.qm
+ usr/share/mscore-3.0/locale/qt_lv.qm
+ usr/share/mscore-3.0/locale/qt_nb.qm
+ usr/share/mscore-3.0/locale/qt_nl.qm
+ usr/share/mscore-3.0/locale/qt_nl_BE.qm
+-usr/share/mscore-3.0/locale/qt_pl.qm
+-usr/share/mscore-3.0/locale/qt_pt.qm
+ usr/share/mscore-3.0/locale/qt_pt_BR.qm
+ usr/share/mscore-3.0/locale/qt_ro.qm
+-usr/share/mscore-3.0/locale/qt_ru.qm
+-usr/share/mscore-3.0/locale/qt_sk.qm
+-usr/share/mscore-3.0/locale/qt_sl.qm
+-usr/share/mscore-3.0/locale/qt_sv.qm
+ usr/share/mscore-3.0/locale/qt_tr.qm
+-usr/share/mscore-3.0/locale/qt_uk.qm
+ usr/share/mscore-3.0/locale/qt_vi.qm
+-usr/share/mscore-3.0/locale/qt_zh_CN.qm
+-usr/share/mscore-3.0/locale/qt_zh_TW.qm
+-usr/share/mscore-3.0/locale/qtbase_bg.qm
+-usr/share/mscore-3.0/locale/qtbase_ca.qm
+-usr/share/mscore-3.0/locale/qtbase_cs.qm
+-usr/share/mscore-3.0/locale/qtbase_da.qm
+-usr/share/mscore-3.0/locale/qtbase_de.qm
+-usr/share/mscore-3.0/locale/qtbase_en.qm
+-usr/share/mscore-3.0/locale/qtbase_es.qm
+-usr/share/mscore-3.0/locale/qtbase_fi.qm
+-usr/share/mscore-3.0/locale/qtbase_fr.qm
+-usr/share/mscore-3.0/locale/qtbase_gd.qm
+-usr/share/mscore-3.0/locale/qtbase_he.qm
+-usr/share/mscore-3.0/locale/qtbase_hu.qm
+-usr/share/mscore-3.0/locale/qtbase_it.qm
+-usr/share/mscore-3.0/locale/qtbase_ja.qm
+-usr/share/mscore-3.0/locale/qtbase_ko.qm
+-usr/share/mscore-3.0/locale/qtbase_lv.qm
+-usr/share/mscore-3.0/locale/qtbase_pl.qm
+-usr/share/mscore-3.0/locale/qtbase_ru.qm
+-usr/share/mscore-3.0/locale/qtbase_sk.qm
+-usr/share/mscore-3.0/locale/qtbase_uk.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_bg.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_ca.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_cs.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_da.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_de.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_en.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_es.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_fi.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_fr.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_hu.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_it.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_ja.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_ko.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_pl.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_ru.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_sk.qm
+-usr/share/mscore-3.0/locale/qtmultimedia_uk.qm
+-usr/share/mscore-3.0/locale/qtquick1_bg.qm
+-usr/share/mscore-3.0/locale/qtquick1_ca.qm
+-usr/share/mscore-3.0/locale/qtquick1_cs.qm
+-usr/share/mscore-3.0/locale/qtquick1_da.qm
+-usr/share/mscore-3.0/locale/qtquick1_de.qm
+-usr/share/mscore-3.0/locale/qtquick1_en.qm
+-usr/share/mscore-3.0/locale/qtquick1_es.qm
+-usr/share/mscore-3.0/locale/qtquick1_fi.qm
+-usr/share/mscore-3.0/locale/qtquick1_fr.qm
+-usr/share/mscore-3.0/locale/qtquick1_he.qm
+-usr/share/mscore-3.0/locale/qtquick1_hu.qm
+-usr/share/mscore-3.0/locale/qtquick1_it.qm
+-usr/share/mscore-3.0/locale/qtquick1_ja.qm
+-usr/share/mscore-3.0/locale/qtquick1_ko.qm
+-usr/share/mscore-3.0/locale/qtquick1_pl.qm
+-usr/share/mscore-3.0/locale/qtquick1_ru.qm
+-usr/share/mscore-3.0/locale/qtquick1_sk.qm
+-usr/share/mscore-3.0/locale/qtquick1_uk.qm
+-usr/share/mscore-3.0/locale/qtscript_bg.qm
+-usr/share/mscore-3.0/locale/qtscript_ca.qm
+-usr/share/mscore-3.0/locale/qtscript_cs.qm
+-usr/share/mscore-3.0/locale/qtscript_da.qm
+-usr/share/mscore-3.0/locale/qtscript_de.qm
+-usr/share/mscore-3.0/locale/qtscript_en.qm
+-usr/share/mscore-3.0/locale/qtscript_es.qm
+-usr/share/mscore-3.0/locale/qtscript_fi.qm
+-usr/share/mscore-3.0/locale/qtscript_fr.qm
+-usr/share/mscore-3.0/locale/qtscript_he.qm
+-usr/share/mscore-3.0/locale/qtscript_hu.qm
+-usr/share/mscore-3.0/locale/qtscript_it.qm
+-usr/share/mscore-3.0/locale/qtscript_ja.qm
+-usr/share/mscore-3.0/locale/qtscript_ko.qm
+-usr/share/mscore-3.0/locale/qtscript_lv.qm
+-usr/share/mscore-3.0/locale/qtscript_pl.qm
+-usr/share/mscore-3.0/locale/qtscript_ru.qm
+-usr/share/mscore-3.0/locale/qtscript_sk.qm
+-usr/share/mscore-3.0/locale/qtscript_uk.qm
+-usr/share/mscore-3.0/locale/qtwebengine_locales
+-usr/share/mscore-3.0/locale/qtxmlpatterns_bg.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_ca.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_cs.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_da.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_de.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_en.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_es.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_fr.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_hu.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_it.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_ja.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_ko.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_pl.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_ru.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_sk.qm
+-usr/share/mscore-3.0/locale/qtxmlpatterns_uk.qm
+ usr/share/mscore-3.0/locale/tours_af.qm
+ usr/share/mscore-3.0/locale/tours_ar.qm
+ usr/share/mscore-3.0/locale/tours_ar_DZ.qm
+@@ -411,6 +285,8 @@
+ usr/share/mscore-3.0/locale/tours_zh_CN.qm
+ usr/share/mscore-3.0/locale/tours_zh_TW.qm
+ usr/share/mscore-3.0/manual
++usr/share/mscore-3.0/manual/doc_de.qhc
++usr/share/mscore-3.0/manual/doc_en.qhc
+ usr/share/mscore-3.0/manual/plugins
+ usr/share/mscore-3.0/manual/plugins/accidental.html
+ usr/share/mscore-3.0/manual/plugins/ambitus.html
+@@ -535,9 +411,6 @@
+ usr/share/mscore-3.0/plugins/scorelist.qml
+ usr/share/mscore-3.0/plugins/view.qml
+ usr/share/mscore-3.0/plugins/walk.qml
+-usr/share/mscore-3.0/sound
+-usr/share/mscore-3.0/sound/MuseScore_General-License.md
+-usr/share/mscore-3.0/sound/MuseScore_General.sf3
+ usr/share/mscore-3.0/styles
+ usr/share/mscore-3.0/styles/MuseJazz.mss
+ usr/share/mscore-3.0/styles/cchords_muse.xml
+@@ -599,6 +472,8 @@
+ usr/share/mscore-3.0/templates/08-Orchestral/01-Classical_Orchestra.mscx
+ usr/share/mscore-3.0/templates/08-Orchestral/02-Symphony_Orchestra.mscx
+ usr/share/mscore-3.0/templates/08-Orchestral/03-String_Orchestra.mscx
++usr/share/mscore-3.0/templates/Create_New_Score.mscz
++usr/share/mscore-3.0/templates/Reunion.mscz
+ usr/share/mscore-3.0/templates/drumset_fr.drm
+ usr/share/mscore-3.0/templates/orchestral.drm
+ usr/share/mscore-3.0/tours
+@@ -623,3 +498,4 @@
+ usr/share/mscore-3.0/workspaces
+ usr/share/mscore-3.0/workspaces/Advanced.workspace
+ usr/share/mscore-3.0/workspaces/Basic.workspace
++usr/share/soundfonts/MuseScore_General.sf3

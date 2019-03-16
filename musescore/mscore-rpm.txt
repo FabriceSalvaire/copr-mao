@@ -1,0 +1,3 @@
+mscore-doc-3.0.5-1.fc29.noarch
+mscore-3.0.5-1.fc29.x86_64
+mscore-fonts-3.0.5-1.fc29.noarch
