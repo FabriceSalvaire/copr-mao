@@ -324,7 +324,7 @@ install -Dm 0644 -p %{SOURCE2} \
 %{_datadir}/soundfonts/MuseScore_General.sf3
 
 %exclude %{_bindir}/QtWebEngineProcess
-%exclude %{_libdir}/qt5/*
+%exclude %{_exec_prefix}/lib/qt5/*
 
 ####################################################################################################
 
