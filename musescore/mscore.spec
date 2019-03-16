@@ -32,6 +32,8 @@ Patch2:        mscore-2.0.3-fix-desktop-file.patch
 Patch3:        musescore-2.0.1-fix-flags-for-precompiled-header.patch
 # correct fonts-tabulature.xml location
 Patch4:        MuseScore-2.0.1-fix-fonts_tabulature.patch
+# Ensure CMake will use qmake-qt5
+Patch5:        mscore-3.0.5-fix-qmake-path.patch
 
 BuildRequires: alsa-lib-devel
 BuildRequires: cmake
