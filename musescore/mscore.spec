@@ -203,7 +203,7 @@ install -pm 644 fonts/bravura/*.otf %{buildroot}/%{_fontdir}
 install -pm 644 fonts/bravura/*.json %{buildroot}/%{_fontdir}/bravura
 install -pm 644 fonts/gootville/*.otf %{buildroot}/%{_fontdir}
 install -pm 644 fonts/gootville/*.json %{buildroot}/%{_fontdir}/gootville/
-install -pm 644 fonts/mscore/*.ttf fonts/mscore/*.otf %{buildroot}/%{_fontdir}
+install -pm 644 fonts/mscore/*.ttf %{buildroot}/%{_fontdir}
 install -pm 644 fonts/mscore/*.json %{buildroot}/%{_fontdir}
 install -pm 644 fonts/*.xml %{buildroot}/%{_fontdir}
 
