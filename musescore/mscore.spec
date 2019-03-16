@@ -295,9 +295,6 @@ install -Dm 0644 -p %{SOURCE2} \
 %_font_pkg %{fontfamilyname}*.ttf
 %{_datadir}/fonts/mscore/bravura/
 %{_datadir}/fonts/mscore/gootville/
-%{_datadir}/fonts/mscore/FreeSans.ttf
-%{_datadir}/fonts/mscore/FreeSerif*.ttf
-%{_datadir}/fonts/mscore/MuseJazz*.ttf
 %{_datadir}/fonts/mscore/MScoreText.ttf
 %{_datadir}/fonts/mscore/*.otf
 %{_datadir}/fonts/mscore/*.json
